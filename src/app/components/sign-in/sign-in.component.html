@@ -1,0 +1,58 @@
+<div class="container d-flex align-items-center justify-content-center vh-100">
+  <form
+    class="col-8 row align-items-center justify-content-center mb-3 needs-validation"
+    [formGroup]="loginForm"
+    (ngSubmit)="onSubmit()"
+    novalidate
+  >
+    <img src="assets/pngwing.com.png" alt="" class="w-lg-25 w-25" />
+    <div class="mb-3">
+      <label class="form-label" for="email">email: </label>
+      <input
+        class="form-control"
+        id="email"
+        type="text"
+        formControlName="email"
+        [ngClass]="{
+          'is-invalid': submitted && loginForm.get('email')?.invalid
+        }"
+        pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"
+      />
+      <div
+        *ngIf="submitted && loginForm.get('email')?.invalid"
+        class="invalid-feedback"
+      >
+        <div *ngIf="loginForm.get('email')?.hasError('required')">
+          Email is required
+        </div>
+        <div *ngIf="loginForm.get('email')?.hasError('pattern')">
+          Please enter a valid email address
+        </div>
+      </div>
+    </div>
+    <div class="mb-3">
+      <label class="form-label" for="password">Password: </label>
+      <input
+        class="form-control"
+        id="password"
+        type="text"
+        formControlName="password"
+        [ngClass]="{
+          'is-invalid': submitted && loginForm.get('password')?.invalid
+        }"
+      />
+      <div
+        *ngIf="submitted && loginForm.get('password')?.invalid"
+        class="invalid-feedback"
+      >
+        <div *ngIf="loginForm.get('password')?.hasError('required')">
+          Password is required
+        </div>
+      </div>
+    </div>
+    <button type="submit" class="btn btn-dark">Sign In</button>
+    <div class="no account">
+      <p>don't have account? <span>Register</span></p>
+    </div>
+  </form>
+</div>
