@@ -4,6 +4,10 @@ import { AllProjectsComponent } from './all-projects/all-projects.component';
 import { SingleProjectComponent } from './single-project/single-project.component';
 import { RouterModule, Routes } from '@angular/router';
 import { CreateProjectComponent } from './create-project/create-project.component';
+import {MatDividerModule} from '@angular/material/divider';
+import {MatCardModule} from '@angular/material/card';
+
+
 
 
 
@@ -25,7 +29,7 @@ const routes: Routes =[{
     CreateProjectComponent
   ],
   imports: [RouterModule.forChild(routes),
-    CommonModule
+    CommonModule,MatDividerModule,MatCardModule
   ]
 })
 export class ProjectModule { }

@@ -1,1 +1,107 @@
-<p>single-projects works!</p>
+<!-- Whole page -->
+<div
+  class="container d-flex justify-content-center align-items-center"
+  style="height: 90vh"
+>
+  <!-- Project Section -->
+  <div class="d-flex align-items-center gap-4">
+    <!-- Project Pic -->
+    <div class="col-5">
+      <!-- <img
+        src="../../../../assets/download.jpg"
+        alt="Book Cover"
+        style="width: 30vmax"
+      /> -->
+
+      <!-- Start Slider -->
+      <div id="carouselExampleIndicators" class="carousel slide">
+        <div class="carousel-indicators">
+          <button
+            type="button"
+            data-bs-target="#carouselExampleIndicators"
+            data-bs-slide-to="0"
+            class="active"
+            aria-current="true"
+            aria-label="Slide 1"
+          ></button>
+          <button
+            type="button"
+            data-bs-target="#carouselExampleIndicators"
+            data-bs-slide-to="1"
+            aria-label="Slide 2"
+          ></button>
+          <button
+            type="button"
+            data-bs-target="#carouselExampleIndicators"
+            data-bs-slide-to="2"
+            aria-label="Slide 3"
+          ></button>
+        </div>
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img
+              src="../../../../assets/download.jpg"
+              class="d-block w-100"
+              style="width: 30vmax"
+              alt="..."
+            />
+          </div>
+          <div class="carousel-item">
+            <img
+              src="../../../../assets/download.jpg"
+              class="d-block w-100"
+              style="width: 30vmax"
+              alt="..."
+            />
+          </div>
+          <div class="carousel-item">
+            <img
+              src="../../../../assets/download.jpg"
+              class="d-block w-100"
+              style="width: 30vmax"
+              alt="..."
+            />
+          </div>
+        </div>
+        <button
+          class="carousel-control-prev"
+          type="button"
+          data-bs-target="#carouselExampleIndicators"
+          data-bs-slide="prev"
+        >
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button
+          class="carousel-control-next"
+          type="button"
+          data-bs-target="#carouselExampleIndicators"
+          data-bs-slide="next"
+        >
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+      <!-- End Slider -->
+    </div>
+    <!-- Project Details -->
+    <div
+      class="col-5 d-flex flex-column justify-content-start align-items-start gap-3 mt-4"
+    >
+      <h1>Project Name</h1>
+      <h4>
+        project description project description project description project
+        description project description project description project description
+        project description project description project description project
+        description project description
+      </h4>
+      <h5>
+        <span class="badge bg-danger"> Category Name </span>
+      </h5>
+    </div>
+    <!-- Button -->
+    <div class="col-2" style="padding-bottom: 33vh">
+      <button class="btn btn-success" style="width: 8vmax">some action</button>
+    </div>
+  </div>
+</div>

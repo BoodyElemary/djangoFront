@@ -12,6 +12,7 @@ import { UserProfileComponent } from './modules/user/user-profile/user-profile.c
 import { MatIconModule } from '@angular/material/icon';
 import {MatCardModule} from '@angular/material/card';
 
+
 @NgModule({
   declarations: [AppComponent, NavbarComponent, SignInComponent, RegisterComponent, UserProfileComponent],
   imports: [

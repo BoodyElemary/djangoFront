@@ -3,6 +3,11 @@ import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { AllCategoriesComponent } from './all-categories/all-categories.component';
 import { SingleCategoryComponent } from './single-category/single-category.component';
+import {MatDividerModule} from '@angular/material/divider';
+import {MatCardModule} from '@angular/material/card';
+
+
+
 
 const routes: Routes =[{
   path:'category',
@@ -15,9 +20,9 @@ const routes: Routes =[{
 ]
 
 @NgModule({
-  declarations: [],
+  declarations: [AllCategoriesComponent],
   imports: [RouterModule.forChild(routes),
-    CommonModule
+    CommonModule, MatCardModule, MatDividerModule
   ]
 })
 export class CategoryModule { }
