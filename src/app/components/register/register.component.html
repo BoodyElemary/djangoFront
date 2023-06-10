@@ -1,12 +1,21 @@
-<div class="container d-flex align-items-center justify-content-center vh-100">
+<div
+  class="container d-flex align-items-center justify-content-center vh-100 mt-5"
+>
   <form
     class="col-8 row align-items-center justify-content-center mb-3 needs-validation"
     [formGroup]="registrationForm"
     (ngSubmit)="onSubmit()"
     novalidate
+    enctype="multipart/form-data"
   >
     <img src="assets/pngwing.com.png" alt="" class="w-lg-25 w-25" />
+    <div class="alert alert-success mt-3" *ngIf="successMessage">
+      {{ message }}
+    </div>
 
+    <div class="alert alert-danger mt-3" *ngIf="errorMessage">
+      {{ message }}
+    </div>
     <div class="mb-3">
       <label class="form-label" for="firstName">First Name: </label>
       <input
@@ -154,6 +163,7 @@
         class="form-control"
         id="profilePicture"
         type="file"
+        (change)="onFileSelect($event)"
         formControlName="profilePicture"
         [ngClass]="{
           'is-invalid':

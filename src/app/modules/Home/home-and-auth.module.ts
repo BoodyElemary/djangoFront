@@ -5,6 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { SignInComponent } from 'src/app/components/sign-in/sign-in.component';
 import { RegisterComponent } from 'src/app/components/register/register.component';
 import { CarouselModule } from 'ngx-owl-carousel-o';
+import { HttpClientModule } from '@angular/common/http';
 
 const routes: Routes = [
   {
@@ -20,6 +21,11 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [HomeComponent],
-  imports: [RouterModule.forChild(routes), CommonModule, CarouselModule],
+  imports: [
+    RouterModule.forChild(routes),
+    CommonModule,
+    CarouselModule,
+    HttpClientModule,
+  ],
 })
 export class HomeAndAuthModule {}

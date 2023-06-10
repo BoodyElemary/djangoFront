@@ -1,10 +1,7 @@
 import { Component } from '@angular/core';
-import {
-  FormGroup,
-  FormControl,
-  Validators,
-  FormBuilder,
-} from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { AuthService } from 'src/app/services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sign-in',
@@ -12,29 +9,49 @@ import {
   styleUrls: ['./sign-in.component.css'],
 })
 export class SignInComponent {
-  constructor(private fb: FormBuilder) {}
-  loginForm: FormGroup = new FormGroup({
-    email: new FormControl(''),
-    password: new FormControl(''),
-  });
+  loginForm: FormGroup;
   submitted = false;
 
-  ngOnInit(): void {
+  constructor(
+    private fb: FormBuilder,
+    private authService: AuthService,
+    private router: Router
+  ) {
     this.loginForm = this.fb.group({
       email: ['', Validators.required],
       password: ['', Validators.required],
     });
   }
+
   get formData() {
     return this.loginForm.controls;
   }
 
   onSubmit() {
-    // TODO: Use EventEmitter with form value
     this.submitted = true;
+
     if (this.loginForm.invalid) {
       return;
     }
-    console.warn(this.loginForm.value);
+
+    const { email, password } = this.loginForm.value;
+
+    this.authService.login(email, password).subscribe(
+      (response) => {
+        if (response.login) {
+          // Save the token in local storage
+          localStorage.setItem('token', response.token);
+
+          // Redirect to the desired route
+          this.router.navigate(['/dashboard']);
+        } else {
+          // Handle login failure
+          console.error('Login failed');
+        }
+      },
+      (error) => {
+        console.error('Login error:', error);
+      }
+    );
   }
 }
