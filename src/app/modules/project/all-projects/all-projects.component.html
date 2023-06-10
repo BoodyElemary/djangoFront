@@ -1,1 +1,33 @@
-<p>all-projects works!</p>
+<!-- Page Title -->
+<mat-card class="mt-4">
+  <h1 style="margin-left: 10%">All Projects</h1>
+</mat-card>
+
+<!-- All Projects -->
+
+<div *ngFor="let project of allProjectsData; index as i">
+  <article class="container card" style="margin-top: 70px">
+    <div class="row no-gutters">
+      <figure class="card-image col-8 col-md-4">
+        <a href="/projects/{{ project.id }}">
+          <img
+            src="../../../../assets/download.jpg"
+            class="card-img col-8 col-md-12"
+          />
+        </a>
+      </figure>
+      <div class="col-8 col-12 col-md-8">
+        <figcaption class="card-body">
+          <a href="/projects/{{ project.id }}" style="text-decoration: none">
+            <h2 class="card-title">{{ project.title }}</h2>
+          </a>
+          <p class="card-text">Project Details: {{ project.details }}</p>
+          <p class="card-text">
+            Project Total Target: {{ project.total_target }}
+          </p>
+        </figcaption>
+      </div>
+    </div>
+    <mat-divider style="margin-top: 20px"></mat-divider>
+  </article>
+</div>

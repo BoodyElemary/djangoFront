@@ -1,0 +1,47 @@
+.card-body {
+    margin-top: 20px;
+  }
+  .card {
+    background: transparent;
+    border-radius: 0;
+    border: 0;
+    margin-bottom: 20px;
+    margin-top: 30px;
+  }
+  .card-title {
+    font-family: "Handlee";
+    font-style: normal;
+    font-weight: 400;
+  }
+  .card-text {
+    font-family: "Rubik";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18;
+  }
+  figure {
+    margin: auto;
+  }
+  .card .card-image {
+    width: 16vmax;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100%;
+    transition: transform 0.5s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .card .card-image:hover {
+    transform: scale(1.1);
+  }
+  @media (max-width: 768px) {
+    .card-text {
+      text-align: center;
+    }
+    .card-title {
+      text-align: center;
+    }
+  }
+  

@@ -1,1 +1,85 @@
-<p>single-projects works!</p>
+<!-- Whole page -->
+<div
+  class="container d-flex justify-content-center align-items-center"
+  style="height: 90vh"
+>
+  <!-- Project Section -->
+  <div class="d-flex align-items-center gap-4">
+    <!-- Project Slider -->
+    <div class="col-5 container">
+      <owl-carousel-o
+        [options]="customOptions"
+        style="display: block !important; width: 25vmax; margin-right: 10vmax;"
+      >
+        <ng-template carouselSlide>
+          <div class="">
+            <img
+              src="../../../../assets/download.jpg"
+              alt="slider first Image "
+              class=""
+              style="width: 25vmax"
+            />
+          </div>
+        </ng-template>
+        <ng-template carouselSlide>
+          <div class="">
+            <img
+              src="../../../../assets/download.jpg"
+              alt="slider second Image "
+              class=""
+              style="width: 25vmax"
+            />
+          </div>
+        </ng-template>
+        <ng-template carouselSlide>
+          <div class="">
+            <img
+              src="../../../../assets/download.jpg"
+              alt="slider third Image"
+              class=""
+              style="width: 25vmax"
+            />
+          </div>
+        </ng-template>
+      </owl-carousel-o>
+    </div>
+
+    <!-- Project Details -->
+    <div
+      class="col-5 d-flex flex-column justify-content-start align-items-start gap-3 mt-4"
+    >
+      <h1 class="text-primary">{{ singleProjectData.title }}</h1>
+      <h6>
+        Project ID :
+        <span class="text-warning">{{ singleProjectData.id }}</span>
+      </h6>
+      <h6>
+        Project Details :
+        <span class="text-warning">{{ singleProjectData.details }}</span>
+      </h6>
+      <h6>
+        Start time :
+        <span class="text-warning">{{ singleProjectData.start_time }}</span>
+      </h6>
+      <h6>
+        End time :
+        <span class="text-warning">{{ singleProjectData.end_time }}</span>
+      </h6>
+      <h6>
+        No. Of Participants :
+        <span class="text-warning">{{ singleProjectData.user }}</span>
+      </h6>
+      <h6 style="font-weight: 800;">
+        Total Target :
+        <span class="text-success">{{ singleProjectData.total_target }}</span>
+      </h6>
+      <h5>
+        <span class="badge bg-danger"> {{categoryData.name}}</span>
+      </h5>
+    </div>
+    <!-- Button -->
+    <div class="col-2" style="padding-bottom: 40vh">
+      <button class="btn btn-success" style="width: 8vmax">some action</button>
+    </div>
+  </div>
+</div>

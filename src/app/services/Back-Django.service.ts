@@ -14,9 +14,15 @@ export class BackDjangoService {
   }
 
   // ------------- For Projects
-  projectAPI: string = `http://127.0.0.1:8000/api/profile`;
-  getProjectInfo(id: number) {
-    return this.httpServ.get(`${this.projectAPI}/${id}`);
+  projectAPI: string = `http://localhost:8000/projects`;
+  getAllProjects() {
+    return this.httpServ.get(`${this.projectAPI}`);
+  }
+  getOneProjects(id: number) {
+    return this.httpServ.get(`${this.projectAPI}/${id}/`);
+  }
+  addOneProject(project: any) {
+    return this.httpServ.post(`${this.projectAPI}`, project);
   }
 
   // ------------- For Categories
@@ -25,8 +31,4 @@ export class BackDjangoService {
     return this.httpServ.get(`${this.categoryAPI}/${id}`);
   }
   registerAPI: string = `http://localhost:8000/users/register/`;
-
-  registerUser(data: any) {
-    return this.httpServ.post(this.registerAPI, data);
-  }
 }
