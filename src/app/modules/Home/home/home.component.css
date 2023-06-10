@@ -1,0 +1,109 @@
+::ng-deep .owl-theme .owl-dots .owl-dot span {
+  background: white !important; /* dots color*/
+}
+
+::ng-deep .owl-theme .owl-dots .owl-dot.active span,
+.owl-theme .owl-dots .owl-dot:hover span {
+  background: #0f655c !important;
+}
+
+::ng-deep .owl-carousel .owl-dots {
+  position: absolute;
+  bottom: 25px; /* Adjust the value to move the dots up */
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+::ng-deep .owl-theme .owl-dots .owl-dot span {
+  width: 12px;
+  height: 12px;
+  margin: 5px 15px;
+}
+
+.carousel-slide {
+  position: relative;
+}
+
+.carousel-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: #fff; /* Customize the text color */
+}
+
+.carousel-title {
+  font-size: 6vw; /* Adjust the font size based on viewport width */
+  /* Customize the title font size */
+  margin-bottom: 10px; /* Customize the margin between title and description */
+  font-family: "Rubik";
+  line-height: 0%;
+  color: #057b49;
+  font-weight: 700;
+  letter-spacing: 0.19em;
+  text-shadow: 8px 4px 4px rgba(0, 0, 0, 0.6);
+  font-size: 75px;
+  text-align: center !important;
+}
+
+.carousel-description {
+  font-size: 2vw; /* Adjust the font size based on viewport width */
+  /* Locally Owned. Crafted with Love. */
+
+  font-family: "Rubik";
+  font-style: normal;
+
+  letter-spacing: 0.19em;
+
+  color: #ffffff;
+
+  text-shadow: 8px 4px 4px rgba(0, 0, 0, 0.6);
+}
+
+.slider-container {
+  box-shadow: 0px 8px 4px rgba(0, 0, 0, 0.4) !important;
+}
+
+img {
+  max-width: 100%;
+  height: 100vh;
+  object-fit: cover;
+}
+
+/* media queries */
+@media only screen and (max-width: 600px) {
+  /* Styles for smaller screens */
+  /* Add your CSS rules here */
+  .carousel-description {
+    font-size: 10vw !important; /* Adjust the font size based on viewport width */
+    /* Locally Owned. Crafted with Love. */
+
+    font-family: "Rubik";
+    font-style: normal;
+
+    letter-spacing: 0.19em;
+
+    color: #ffffff;
+
+    text-shadow: 8px 4px 4px rgba(0, 0, 0, 0.6);
+  }
+}
+
+@media only screen and (min-width: 424px) and (max-width: 550px) {
+  /* Styles for screens between 424px and 550px */
+  /* Add your CSS rules here */
+  .carousel-description {
+    font-size: 6vw !important; /* Adjust the font size based on viewport width */
+    /* Locally Owned. Crafted with Love. */
+
+    font-family: "Rubik";
+    font-style: normal;
+
+    letter-spacing: 0.19em;
+
+    color: #ffffff;
+
+    text-shadow: 8px 4px 4px rgba(0, 0, 0, 0.6);
+  }
+}

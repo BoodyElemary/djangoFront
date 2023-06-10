@@ -1,4 +1,46 @@
-<h1>Welcome to Crowd-Funding</h1>
-<h1>Welcome to Crowd-Funding</h1>
-
-<!-- Slider -->
+<div class="position-relative slider-container">
+  <div class="carousel-text z-2 d-flex flex-column gap-2 gap-md-4"></div>
+  <div class="bg-white slider-container">
+    <owl-carousel-o [options]="customOptions">
+      <ng-template carouselSlide>
+        <div class="carousel-slide">
+          <img
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSBzaxP4bdIuAWsrVctreho7ImqaQkiHjOR9rX96WQn9jzvahnXexwSytCaE1AFV0IB2lw&usqp=CAU"
+            alt="slider first Image "
+            class="img-fluid"
+          />
+          <div class="carousel-caption">
+            <h3>Slide 1 Title</h3>
+            <p>Slide 1 Description</p>
+          </div>
+        </div>
+      </ng-template>
+      <ng-template carouselSlide>
+        <div class="carousel-slide">
+          <img
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSBzaxP4bdIuAWsrVctreho7ImqaQkiHjOR9rX96WQn9jzvahnXexwSytCaE1AFV0IB2lw&usqp=CAU"
+            alt="slider second Image "
+            class="img-fluid"
+          />
+          <div class="carousel-caption">
+            <h3>Slide 2 Title</h3>
+            <p>Slide 2 Description</p>
+          </div>
+        </div>
+      </ng-template>
+      <ng-template carouselSlide>
+        <div class="carousel-slide">
+          <img
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSBzaxP4bdIuAWsrVctreho7ImqaQkiHjOR9rX96WQn9jzvahnXexwSytCaE1AFV0IB2lw&usqp=CAU"
+            alt="slider third Image"
+            class="img-fluid"
+          />
+          <div class="carousel-caption">
+            <h3>Slide 3 Title</h3>
+            <p>Slide 3 Description</p>
+          </div>
+        </div>
+      </ng-template>
+    </owl-carousel-o>
+  </div>
+</div>
