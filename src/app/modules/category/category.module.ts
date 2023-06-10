@@ -21,7 +21,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [AllCategoriesComponent],
+  declarations: [AllCategoriesComponent, SingleCategoryComponent],
   imports: [RouterModule.forChild(routes),
     CommonModule, MatCardModule, MatDividerModule
   ]

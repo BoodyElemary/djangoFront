@@ -14,17 +14,25 @@ export class BackDjangoService {
   }
 
   // ------------- For Projects
-  projectAPI:string = `http://127.0.0.1:8000/api/profile`
-  getProjectInfo(id:number){
-    return this.httpServ.get(`${this.projectAPI}/${id}`)
+  projectAPI:string = `http://localhost:8000/projects`
+  getAllProjects(){
+    return this.httpServ.get(`${this.projectAPI}`)
+  }
+  getOneProjects(id:number){
+    return this.httpServ.get(`${this.projectAPI}/${id}/`)
+  }
+  addOneProject(project:any){
+    return this.httpServ.post(`${this.projectAPI}`,project)
   }
 
 
   // ------------- For Categories
-  categoryAPI:string = `http://127.0.0.1:8000/api/profile`
-  getCategoryInfo(id:number){
-    return this.httpServ.get(`${this.categoryAPI}/${id}`)
+  categoryAPI:string = `http://127.0.0.1:8000/categories`
+  getAllCategories(){
+    return this.httpServ.get(`${this.categoryAPI}`)
   }
-
+  getOneCategories(id:number){
+    return this.httpServ.get(`${this.categoryAPI}/${id}/`)
+  }
 
 }
