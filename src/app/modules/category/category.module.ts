@@ -9,20 +9,22 @@ import {MatCardModule} from '@angular/material/card';
 
 
 
-const routes: Routes =[{
-  path:'category',
-  children:[
-  { path:'', component: AllCategoriesComponent},
-  { path:'all', component: AllCategoriesComponent},
-  { path:':id', component: SingleCategoryComponent},
-  ]
-}
-]
+const routes: Routes = [
+  {
+    path: 'category',
+    children: [
+      { path: '', component: AllCategoriesComponent },
+      { path: 'all', component: AllCategoriesComponent },
+      { path: ':id', component: SingleCategoryComponent },
+    ],
+  },
+];
 
 @NgModule({
   declarations: [AllCategoriesComponent],
   imports: [RouterModule.forChild(routes),
     CommonModule, MatCardModule, MatDividerModule
   ]
+
 })
-export class CategoryModule { }
+export class CategoryModule {}

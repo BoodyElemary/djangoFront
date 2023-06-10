@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import {MatListModule} from '@angular/material/list';
+import { MatListModule } from '@angular/material/list';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -10,17 +10,27 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RegisterComponent } from './components/register/register.component';
 import { UserProfileComponent } from './modules/user/user-profile/user-profile.component';
 import { MatIconModule } from '@angular/material/icon';
-import {MatCardModule} from '@angular/material/card';
+import { MatCardModule } from '@angular/material/card';
 
 
 @NgModule({
-  declarations: [AppComponent, NavbarComponent, SignInComponent, RegisterComponent, UserProfileComponent],
+  declarations: [
+    AppComponent,
+    NavbarComponent,
+    SignInComponent,
+    RegisterComponent,
+    UserProfileComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NgbModule,
     ReactiveFormsModule,
-    FormsModule,MatListModule,MatIconModule,MatCardModule
+    FormsModule,
+    MatListModule,
+    MatIconModule,
+    MatCardModule,
+    NgbModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
