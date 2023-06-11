@@ -4,115 +4,133 @@
     <!-- Name -->
     <mat-card-content class="fs-2 text-success-emphasis">
       <mat-icon style="font-size: 25px">account_circle</mat-icon>
-      ali</mat-card-content
-    >
+
+      {{ firstName }} {{ lastName }}
+    </mat-card-content>
   </mat-card>
   <mat-list class="p-3">
     <mat-divider></mat-divider>
   </mat-list>
 
   <!-- ************************************************************ -->
-  <div class="container mt-5 mx-3">
-    <mat-list>
-      <mat-list-item>
-        <!--  -->
-        <!-- Name -->
-        <div class="row">
-          <mat-icon class="px-4">badge</mat-icon>
-          <h3 class="col-md-4">User Name:</h3>
-          <p class="col-md-4">Ali</p>
-        </div>
-      </mat-list-item>
-      <mat-divider class="col-md-9"></mat-divider>
-      <mat-list-item
+  <div class="container row mt-5 mx-3">
+    <div class="col-6">
+      <mat-list>
+        <mat-list-item>
+          <!--  -->
+          <!-- email -->
+          <div class="row">
+            <mat-icon class="px-4">alternate_email</mat-icon>
+            <h3 class="col-md-4">E-mail:</h3>
+            <p class="col-md-4">{{ profileData?.data?.email }}</p>
+          </div></mat-list-item
         >
-        <!--  -->
-        <!-- email -->
-        <div class="row">
-          <mat-icon class="px-4">alternate_email</mat-icon>
-          <h3 class="col-md-4">E-mail:</h3>
-          <p class="col-md-4">Email@.....</p>
-        </div></mat-list-item
-      >
-      <mat-divider class="col-md-9"></mat-divider>
-      <mat-list-item
-        >
-        <!--  -->
-        <!-- Phone -->
-        <div class="row">
-          <mat-icon class="px-4">call</mat-icon>
+        <mat-divider class="col-md-9"></mat-divider>
+        <mat-list-item>
+          <!--  -->
+          <!-- Phone -->
+          <div class="row">
+            <mat-icon class="px-4">call</mat-icon>
 
-          <h3 class="col-md-4">Phone:</h3>
-          <p class="col-md-4">015200000</p>
-        </div></mat-list-item
-      >
-      <mat-divider class="col-md-9"></mat-divider>
-      <mat-list-item
+            <h3 class="col-md-4">Phone:</h3>
+            <p class="col-md-4">{{ profileData?.data?.mobile_phone }}</p>
+          </div></mat-list-item
         >
-        <!--  -->
-        <!-- address -->
-        <div class="row">
-          <mat-icon class="px-4">home</mat-icon>
-
-          <h3 class="col-md-4">Address:</h3>
-          <p class="col-md-4">tanta ...........</p>
-        </div></mat-list-item
-      >
+      </mat-list>
       <mat-divider class="col-md-9"></mat-divider>
-      <mat-list-item
-        >
-        <!--  -->
-        <!-- city -->
-        <div class="row">
-          <mat-icon class="px-4">apartment</mat-icon>
+      <!-- table of donations -->
+      <table class="table mt-5">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">First</th>
+            <th scope="col">Last</th>
+            <th scope="col">Handle</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">1</th>
+            <td>Mark</td>
+            <td>Otto</td>
+            <td>@mdo</td>
+          </tr>
+          <tr>
+            <th scope="row">2</th>
+            <td>Jacob</td>
+            <td>Thornton</td>
+            <td>@fat</td>
+          </tr>
+          <tr>
+            <th scope="row">3</th>
+            <td colspan="2">Larry the Bird</td>
+            <td>@twitter</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-6">
+      <img [src]="profilePicUrl" alt="" />
+      <div class="mt-5 col-7 row">
+        <button class="mt-2 btn btn-warning" routerLink="/profile/edit">
+          Edit Profile
+        </button>
+        <button class="mt-2 btn btn-danger">delete Profile</button>
 
-          <h3 class="col-md-4">City:</h3>
-          <p class="col-md-4">tanata</p>
-        </div></mat-list-item
-      >
-      <mat-divider class="col-md-9"></mat-divider>
-      <mat-list-item
-        >
-        <!--  -->
-        <!-- Anythong -->
-        <div class="row">
-          <mat-icon class="px-4">emoji_transportation</mat-icon>
-
-          <h3 class="col-md-4">State:</h3>
-          <p class="col-md-4">bla bla</p>
-        </div></mat-list-item
-      >
-      <mat-divider class="col-md-9"></mat-divider>
-      <mat-list-item
-        >
-        <!--  -->
-        <!-- date joined -->
-        <div class="row">
-          <mat-icon class="px-4">login</mat-icon>
-
-          <h3 class="col-md-4">Joined in:</h3>
-          <p class="col-md-4">
-            date joined here ..........
-          </p>
-        </div></mat-list-item
-      >
-    </mat-list>
+        <button class="mt-2 btn btn-success">Create Project</button>
+      </div>
+    </div>
   </div>
-
-  <div class="mt-5 mx-5">
-    <button
-      mat-raised-button
-      color="primary"
-      class="col-2 fs-5 mx-2"
-    >
-      Edit Profile
-    </button>
-    <button
-      mat-raised-button
-      color="primary"
-      class="col-2 fs-5 mx-2"
-    >
-      My Results
-    </button>
+  <mat-divider class="mt-4"></mat-divider>
+  <div *ngFor="let project of userProjectsData.data; index as i">
+    <article class="container card" style="margin-top: 70px">
+      <div class="row no-gutters">
+        <!-- Image -->
+        <figure class="card-image col-8 col-md-4">
+          <a href="/projects/{{ project.id }}">
+            <img
+              src="{{ project.pictures['0'] }}"
+              class="card-img col-8 col-md-12"
+            />
+          </a>
+        </figure>
+        <div class="col-8 col-12 col-md-8">
+          <!-- Details -->
+          <figcaption class="card-body">
+            <a href="/projects/{{ project.id }}" style="text-decoration: none">
+              <h2 class="card-title">{{ project.title }}</h2>
+            </a>
+            <p class="card-text">Project Details: {{ project.details }}</p>
+            <p class="card-text">
+              Project Total Target: {{ project.total_target }}
+            </p>
+            <p class="card-text">
+              Created By : {{ project.user.first_name }}
+              {{ project.user.last_name }}
+            </p>
+          </figcaption>
+          <!-- Tags -->
+          <div
+            class="d-flex gap-2"
+            *ngFor="let tag of project.tags; index as i"
+          >
+            <div
+              style="
+                background-color: rgb(0, 0, 0);
+                border-radius: 15px;
+                width: 10vmax;
+                height: 2.5vmax;
+                text-align: center;
+                color: white;
+              "
+            >
+              <p>{{ tag }}</p>
+            </div>
+          </div>
+          <!-- End of info -->
+        </div>
+        <mat-divider style="margin-top: 20px"></mat-divider>
+      </div>
+    </article>
   </div>
 </div>

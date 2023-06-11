@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
@@ -9,7 +10,7 @@ import { tap } from 'rxjs/operators';
 export class AuthService {
   private apiUrl = 'http://localhost:8000/users/login/';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private router: Router) {}
 
   public login(email: string, password: string): Observable<any> {
     const requestBody = { email, password };
@@ -40,6 +41,7 @@ export class AuthService {
 
   public logout(): void {
     localStorage.removeItem('jwtToken');
+    this.router.navigate(['/login']);
   }
 
   private isTokenExpired(token: string): boolean {

@@ -45,7 +45,7 @@ export class SignInComponent {
           localStorage.setItem('token', response.token);
 
           // Redirect to the desired route
-          this.router.navigate(['/dashboard']);
+          this.router.navigate(['/profile']);
         } else {
           // Handle login failure
           console.error('Login failed');

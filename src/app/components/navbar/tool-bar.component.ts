@@ -3,19 +3,21 @@ import { BackDjangoService } from 'src/app/services/Back-Django.service';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
-  selector: 'app-user-profile',
-  templateUrl: './user-profile.component.html',
-  styleUrls: ['./user-profile.component.css'],
+  selector: 'app-tool-bar',
+  templateUrl: './tool-bar.component.html',
+  styleUrls: ['./tool-bar.component.css'],
 })
-export class UserProfileComponent {
+export class ToolBarComponent {
   profileData: any;
-  userProjectsData: any;
   apiUrl: string = 'http://localhost:8000';
   firstName: string = '';
   lastName: string = '';
   profilePicUrl: string = '';
 
-  constructor(private http: BackDjangoService) {}
+  constructor(
+    private authService: AuthService,
+    private http: BackDjangoService
+  ) {}
   ngOnInit(): void {
     this.profileData = this.http.getUserProfile().subscribe({
       next: (res: any) => {
@@ -28,11 +30,9 @@ export class UserProfileComponent {
         console.log(this.profilePicUrl);
       },
     });
-    this.userProjectsData = this.http.getUserProject().subscribe({
-      next: (res: any) => {
-        this.userProjectsData = res;
-        console.log(res);
-      },
-    });
+  }
+
+  logout(): void {
+    this.authService.logout();
   }
 }
