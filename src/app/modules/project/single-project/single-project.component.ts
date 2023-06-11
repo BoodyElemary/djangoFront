@@ -33,7 +33,11 @@ import { BackDjangoService } from 'src/app/services/Back-Django.service';
   ],
 })
 export class SingleProjectComponent {
+  comment:any
+  amountToDonate: any;
   singleProjectData: any;
+  singleProjectDonationData: any;
+  currentDonations: number=0;
   categoryData: any;
   categoryid: number = 0;
   projectID: number = 0;
@@ -47,20 +51,26 @@ export class SingleProjectComponent {
   }
 
   ngOnInit(): void {
+    console.log(this.projectID);
+    
     this.singleProjectData = this.singleProjectService
       .getOneProject(this.projectID)
       .subscribe({
         next: (res: any) => {
           this.singleProjectData = res;
           console.log(this.singleProjectData);
-          this.categoryData = this.singleProjectService
-            .getOneCategories(this.singleProjectData.category)
-            .subscribe({
-              next: (res: any) => {
-                this.categoryData = res;
-                console.log(this.categoryData);
-              },
-            });
+        },
+      });
+
+      this.singleProjectDonationData = this.singleProjectService
+      .getOneProjectDonation(this.projectID)
+      .subscribe({
+        next: (res: any) => {
+          this.singleProjectDonationData = res;
+          // console.log(this.singleProjectDonationData);
+          this.singleProjectDonationData.data.forEach((item: any) => { this.currentDonations += Number(item.money) });
+          // console.log(this.currentDonations);
+          
         },
       });
 
@@ -93,4 +103,35 @@ export class SingleProjectComponent {
     autoplay: true,
     autoplayTimeout: 2000,
   };
+
+
+
+  donate() {
+    this.amountToDonate = Number(prompt("Enter the amount you want to donate:"))
+
+    this.singleProjectService
+    .addOneProjectDonation(this.amountToDonate,this.projectID)
+    .subscribe({
+      next: (res: any) => { console.log(res);
+          
+      },
+    });
+  }
+
+
+
+  sendComment() {
+    this.comment =(<HTMLInputElement>document.getElementById("comment")).value
+ 
+    const formComment = new FormData();
+    formComment.append("comment",this.comment)
+    
+    console.log(formComment.get("comment"));
+    
+    this.singleProjectService
+    .addOneProjectComment(formComment,this.projectID)
+    .subscribe({
+      next: (res: any) => { console.log(res)},
+    });
+  }
 }

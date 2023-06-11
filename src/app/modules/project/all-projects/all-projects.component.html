@@ -5,18 +5,20 @@
 
 <!-- All Projects -->
 
-<div *ngFor="let project of allProjectsData; index as i">
+<div *ngFor="let project of allProjectsData.data; index as i">
   <article class="container card" style="margin-top: 70px">
     <div class="row no-gutters">
+      <!-- Image -->
       <figure class="card-image col-8 col-md-4">
         <a href="/projects/{{ project.id }}">
           <img
-            src="../../../../assets/download.jpg"
+            src="{{ project.pictures['0'] }}"
             class="card-img col-8 col-md-12"
           />
         </a>
       </figure>
       <div class="col-8 col-12 col-md-8">
+        <!-- Details -->
         <figcaption class="card-body">
           <a href="/projects/{{ project.id }}" style="text-decoration: none">
             <h2 class="card-title">{{ project.title }}</h2>
@@ -25,9 +27,28 @@
           <p class="card-text">
             Project Total Target: {{ project.total_target }}
           </p>
+          <p class="card-text">
+            Created By : {{ project.user.first_name }} {{ project.user.last_name }}
+          </p>
         </figcaption>
+        <!-- Tags -->
+        <div class="d-flex gap-2" *ngFor="let tag of project.tags; index as i">
+          <div
+            style="
+              background-color: rgb(0, 0, 0);
+              border-radius: 15px;
+              width: 10vmax;
+              height: 2.5vmax;
+              text-align: center;
+              color: white;
+            "
+          >
+            <p>{{ tag }}</p>
+          </div>
+        </div>
+        <!-- End of info -->
       </div>
+      <mat-divider style="margin-top: 20px"></mat-divider>
     </div>
-    <mat-divider style="margin-top: 20px"></mat-divider>
   </article>
 </div>
