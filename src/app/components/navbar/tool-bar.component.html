@@ -1,0 +1,17 @@
+<header class="container-fluid bg-light text-dark px-0">
+  <div class="d-flex justify-content-between align-items-baseline mx-4">
+    <div>
+      <p>
+        Welcome
+        <!-- <span>{{ userData.firstName }} {{ userData.lastName }}</span> -->
+        <span>{{ firstName }} {{ lastName }}</span>
+      </p>
+    </div>
+    <div>
+      <button class="btn text-danger" (click)="logout()">logout</button>
+      <Button class="btn" routerLink="/profile">
+        <img [src]="profilePicUrl" alt="avatar" className="avatar" />
+      </Button>
+    </div>
+  </div>
+</header>

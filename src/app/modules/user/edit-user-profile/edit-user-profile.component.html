@@ -1,1 +1,108 @@
-<p>edit-user-profile works!</p>
+<div
+  class="container d-flex align-items-center justify-content-center vh-100 mt-5"
+>
+  <form
+    class="col-8 row align-items-center justify-content-center mb-3 needs-validation"
+    [formGroup]="registrationForm"
+    (ngSubmit)="onSubmit()"
+    novalidate
+    enctype="multipart/form-data"
+  >
+    <img src="assets/pngwing.com.png" alt="" class="w-lg-25 w-25" />
+    <div class="alert alert-success mt-3" *ngIf="successMessage">
+      your data was updated succesfully
+    </div>
+
+    <div class="alert alert-danger mt-3" *ngIf="errorMessage">
+      {{ message }}
+    </div>
+    <div class="mb-3">
+      <label class="form-label" for="firstName">First Name: </label>
+      <input
+        class="form-control"
+        id="firstName"
+        type="text"
+        formControlName="firstName"
+        [ngClass]="{
+          'is-invalid': submitted && registrationForm.get('firstName')?.invalid
+        }"
+      />
+      <div
+        *ngIf="submitted && registrationForm.get('firstName')?.invalid"
+        class="invalid-feedback"
+      >
+        <div *ngIf="registrationForm.get('firstName')?.hasError('required')">
+          First Name is required
+        </div>
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label" for="lastName">Last Name: </label>
+      <input
+        class="form-control"
+        id="lastName"
+        type="text"
+        formControlName="lastName"
+        [ngClass]="{
+          'is-invalid': submitted && registrationForm.get('lastName')?.invalid
+        }"
+      />
+      <div
+        *ngIf="submitted && registrationForm.get('lastName')?.invalid"
+        class="invalid-feedback"
+      >
+        <div *ngIf="registrationForm.get('lastName')?.hasError('required')">
+          Last Name is required
+        </div>
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label" for="mobilePhone">Mobile Phone: </label>
+      <input
+        class="form-control"
+        id="mobilePhone"
+        type="text"
+        formControlName="mobilePhone"
+        [ngClass]="{
+          'is-invalid':
+            submitted && registrationForm.get('mobilePhone')?.invalid
+        }"
+        pattern="^01[0-2|5]{1}[0-9]{8}$"
+      />
+      <div
+        *ngIf="submitted && registrationForm.get('mobilePhone')?.invalid"
+        class="invalid-feedback"
+      >
+        <div *ngIf="registrationForm.get('mobilePhone')?.hasError('required')">
+          Mobile Phone is required
+        </div>
+        <div *ngIf="registrationForm.get('mobilePhone')?.hasError('pattern')">
+          Please enter a valid Egyptian phone number
+        </div>
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label" for="profilePicture">Profile Picture: </label>
+      <input
+        class="form-control"
+        id="profilePicture"
+        type="file"
+        (change)="onFileSelect($event)"
+        formControlName="profilePicture"
+        [ngClass]="{
+          'is-invalid':
+            submitted && registrationForm.get('profilePicture')?.invalid
+        }"
+      />
+      <!-- Error messages here -->
+      <div *ngIf="registrationForm.get('profilePicture')?.hasError('required')">
+        profile image is required
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-dark">edit profile</button>
+  </form>
+</div>
