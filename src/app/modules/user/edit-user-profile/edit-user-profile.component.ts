@@ -31,7 +31,7 @@ export class EditUserProfileComponent {
         '',
         [Validators.required, Validators.pattern('^01[0-2|5]{1}[0-9]{8}$')],
       ],
-      profilePicture: [null, Validators.required],
+      profilePicture: [null],
     });
   }
   ngOnInit(): void {
@@ -90,7 +90,9 @@ export class EditUserProfileComponent {
     formInfo.append('first_name', requestBody.first_name);
     formInfo.append('last_name', requestBody.last_name);
     formInfo.append('mobile_phone', requestBody.mobile_phone);
-    formInfo.append('profile_picture', requestBody.profile_picture);
+    if (requestBody.profile_picture) {
+      formInfo.append('profile_picture', requestBody.profile_picture);
+    }
     const formDataEntries: [string, string][] = [];
     formInfo.forEach((value, key) => {
       formDataEntries.push([key, value.toString()]);
