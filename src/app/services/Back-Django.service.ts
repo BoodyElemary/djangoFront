@@ -49,6 +49,11 @@ export class BackDjangoService {
     const headers = new HttpHeaders().set('Authorization', `${token}`);
     return this.httpServ.post(`${this.projectAPI}/${id}/Donations/`,money, { headers });
   }
+  getOneProjectComment(id: number) {
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders().set('Authorization', `${token}`);
+    return this.httpServ.get(`${this.projectAPI}/${id}/comments/`, { headers });
+  }
   addOneProjectComment(comment: any,id: number) {
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders().set('Authorization', `${token}`);

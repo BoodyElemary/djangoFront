@@ -9,6 +9,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import { BackDjangoService } from 'src/app/services/Back-Django.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-single-project',
@@ -33,6 +34,7 @@ import { BackDjangoService } from 'src/app/services/Back-Django.service';
   ],
 })
 export class SingleProjectComponent {
+  retrievedComments:any
   comment:any
   amountToDonate: any;
   singleProjectData: any;
@@ -52,7 +54,7 @@ export class SingleProjectComponent {
 
   ngOnInit(): void {
     console.log(this.projectID);
-    
+    // get Project Data
     this.singleProjectData = this.singleProjectService
       .getOneProject(this.projectID)
       .subscribe({
@@ -61,6 +63,14 @@ export class SingleProjectComponent {
           console.log(this.singleProjectData);
         },
       });
+
+      // get Comments
+      this.retrievedComments = this.singleProjectService.getOneProjectComment(this.projectID).subscribe({
+        next:(res:any)=>{
+          this.retrievedComments = res;
+          // console.log(this.retrievedComments);          
+        }
+      })
 
       this.singleProjectDonationData = this.singleProjectService
       .getOneProjectDonation(this.projectID)
@@ -104,16 +114,29 @@ export class SingleProjectComponent {
     autoplayTimeout: 2000,
   };
 
+  reloadPage() {
+    setTimeout(()=>{
+      window.location.reload();
+    }, 100);
+}
 
 
   donate() {
     this.amountToDonate = Number(prompt("Enter the amount you want to donate:"))
 
+    const donateForm = new FormData();
+    donateForm.append("money",this.amountToDonate)
+
     this.singleProjectService
-    .addOneProjectDonation(this.amountToDonate,this.projectID)
+    .addOneProjectDonation(donateForm,this.projectID)
     .subscribe({
-      next: (res: any) => { console.log(res);
-          
+      next: (res: any) => {
+        console.log(res.message);
+        
+        // try and catch for eman
+
+        alert(res.message)
+        // this.reloadPage()
       },
     });
   }
@@ -131,7 +154,8 @@ export class SingleProjectComponent {
     this.singleProjectService
     .addOneProjectComment(formComment,this.projectID)
     .subscribe({
-      next: (res: any) => { console.log(res)},
+      next: (res: any) => { console.log(res)
+        this.reloadPage()},
     });
   }
 }

@@ -1,7 +1,14 @@
-<div
-  class="container d-flex align-items-start justify-content-around mt-4"
->
-<h1 style="font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; margin-top: .7vmax;" class="col-4">Create a Project:</h1>
+<div class="container d-flex align-items-start justify-content-around mt-4">
+  <h1
+    style="
+      font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
+        'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+      margin-top: 0.7vmax;
+    "
+    class="col-4"
+  >
+    Create a Project:
+  </h1>
   <form
     class="col-7 row align-items-center justify-content-center mb-2 needs-validation"
     [formGroup]="creationForm"
@@ -16,7 +23,6 @@
     <div class="alert alert-danger mt-3" *ngIf="errorMessage">
       {{ message }}
     </div>
-
 
     <!-- Title -->
     <div class="mb-2">
@@ -110,54 +116,46 @@
     </div>
     <!--  -->
 
-
     <!-- End Time -->
     <div class="mb-2">
-        <label class="form-label" for="start_date">Project Start Date: </label>
-        <input
-          class="form-control"
-          id="start_date"
-          type="date"
-          formControlName="start_date"
-          [ngClass]="{
-            'is-invalid':
-              submitted && creationForm.get('start_date')?.invalid
-          }"
-        />
-        <div
-          *ngIf="submitted && creationForm.get('start_date')?.invalid"
-          class="invalid-feedback"
-        >
-          <div
-            *ngIf="creationForm.get('start_date')?.hasError('required')"
-          >
-            End date is required
-          </div>
-        </div>
-      </div>
-      <!--  -->
-
-
-    <!-- End Time -->
-    <div class="mb-2">
-      <label class="form-label" for="end_date">Project End Date: </label>
+      <label class="form-label" for="start_time">Project Start Date: </label>
       <input
         class="form-control"
-        id="end_date"
+        id="start_time"
         type="date"
-        formControlName="end_date"
+        formControlName="start_time"
         [ngClass]="{
-          'is-invalid':
-            submitted && creationForm.get('end_date')?.invalid
+          'is-invalid': submitted && creationForm.get('start_time')?.invalid
         }"
       />
       <div
-        *ngIf="submitted && creationForm.get('end_date')?.invalid"
+        *ngIf="submitted && creationForm.get('start_time')?.invalid"
         class="invalid-feedback"
       >
-        <div
-          *ngIf="creationForm.get('end_date')?.hasError('required')"
-        >
+        <div *ngIf="creationForm.get('start_time')?.hasError('required')">
+          End date is required
+        </div>
+      </div>
+    </div>
+    <!--  -->
+
+    <!-- End Time -->
+    <div class="mb-2">
+      <label class="form-label" for="end_time">Project End Date: </label>
+      <input
+        class="form-control"
+        id="end_time"
+        type="date"
+        formControlName="end_time"
+        [ngClass]="{
+          'is-invalid': submitted && creationForm.get('end_time')?.invalid
+        }"
+      />
+      <div
+        *ngIf="submitted && creationForm.get('end_time')?.invalid"
+        class="invalid-feedback"
+      >
+        <div *ngIf="creationForm.get('end_time')?.hasError('required')">
           End date is required
         </div>
       </div>
@@ -173,8 +171,7 @@
         type="text"
         formControlName="tags"
         [ngClass]="{
-          'is-invalid':
-            submitted && creationForm.get('tags')?.invalid
+          'is-invalid': submitted && creationForm.get('tags')?.invalid
         }"
       />
       <div
@@ -199,8 +196,7 @@
         formControlName="pictures"
         multiple
         [ngClass]="{
-          'is-invalid':
-            submitted && creationForm.get('pictures')?.invalid
+          'is-invalid': submitted && creationForm.get('pictures')?.invalid
         }"
       />
       <!-- Error messages here -->
@@ -211,6 +207,5 @@
     <!--  -->
 
     <button type="submit" class="btn btn-dark">Create</button>
-
   </form>
 </div>

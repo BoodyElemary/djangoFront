@@ -122,7 +122,9 @@
     >
       <mat-card class="mt-4" style="width: 80%">
         <mat-card-content
-          ><p class="container fs-5 text-success-emphasis">
+          >
+          <img src="http://localhost:8000{{ comment.user.profile_picture }}" style="width: 3vmax;">
+          <p class="container fs-5 text-success-emphasis">
             {{ comment.user.first_name }} {{ comment.user.last_name }}:
           </p>
           <p class="container text-success-emphasis">
