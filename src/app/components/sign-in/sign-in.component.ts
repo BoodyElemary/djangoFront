@@ -35,9 +35,11 @@ export class SignInComponent {
     }
 
     const { email, password } = this.loginForm.value;
-
+    console.log(email);
+    console.log(password);
     this.authService.login(email, password).subscribe(
       (response) => {
+        console.log(response);
         if (response.login) {
           // Save the token in local storage
           localStorage.setItem('token', response.token);
