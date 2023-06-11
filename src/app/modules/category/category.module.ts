@@ -5,6 +5,7 @@ import { AllCategoriesComponent } from './all-categories/all-categories.componen
 import { SingleCategoryComponent } from './single-category/single-category.component';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatCardModule} from '@angular/material/card';
+import { LoginGuard } from 'src/app/guards/login-guard.guard';
 
 
 
@@ -13,8 +14,8 @@ const routes: Routes = [
   {
     path: 'category',
     children: [
-      { path: '', component: AllCategoriesComponent },
-      { path: 'all', component: AllCategoriesComponent },
+      { path: '', component: AllCategoriesComponent , canActivate: [LoginGuard] },
+      { path: 'all', component: AllCategoriesComponent , canActivate: [LoginGuard] },
       { path: ':id', component: SingleCategoryComponent },
     ],
   },

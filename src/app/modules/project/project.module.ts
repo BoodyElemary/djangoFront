@@ -8,13 +8,17 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatCardModule } from '@angular/material/card';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { LoginGuard } from 'src/app/guards/login-guard.guard';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
+
+
 
 const routes: Routes = [
   {
     path: 'projects',
     children: [
       { path: '', component: AllProjectsComponent, canActivate: [LoginGuard] },
-      { path: 'all', component: AllProjectsComponent },
+      { path: 'all', component: AllProjectsComponent , canActivate: [LoginGuard] },
       { path: 'create', component: CreateProjectComponent },
       { path: ':id', component: SingleProjectComponent },
     ],
@@ -33,6 +37,8 @@ const routes: Routes = [
     MatDividerModule,
     MatCardModule,
     CarouselModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
 })
 export class ProjectModule {}

@@ -1,43 +1,23 @@
 <!-- Whole page -->
-<div
-  class="container d-flex justify-content-center align-items-center"
-  style="height: 90vh"
->
+<div class="container" style="height: 90vh">
   <!-- Project Section -->
-  <div class="d-flex align-items-center gap-4">
+  <div class="d-flex align-items-center gap-4" style="margin-top: 4vmax">
     <!-- Project Slider -->
-    <div class="col-5 container">
+    <div class="col-4">
       <owl-carousel-o
         [options]="customOptions"
-        style="display: block !important; width: 25vmax; margin-right: 10vmax;"
+        style="display: block !important; width: 20vmax; margin-right: 10vmax"
       >
-        <ng-template carouselSlide>
+        <ng-template
+          carouselSlide
+          *ngFor="let pic of singleProjectData.data.pictures; index as i"
+        >
           <div class="">
             <img
-              src="../../../../assets/download.jpg"
-              alt="slider first Image "
+              src="{{ pic }}"
+              alt="{{ pic }}"
               class=""
-              style="width: 25vmax"
-            />
-          </div>
-        </ng-template>
-        <ng-template carouselSlide>
-          <div class="">
-            <img
-              src="../../../../assets/download.jpg"
-              alt="slider second Image "
-              class=""
-              style="width: 25vmax"
-            />
-          </div>
-        </ng-template>
-        <ng-template carouselSlide>
-          <div class="">
-            <img
-              src="../../../../assets/download.jpg"
-              alt="slider third Image"
-              class=""
-              style="width: 25vmax"
+              style="width: 20vmax"
             />
           </div>
         </ng-template>
@@ -46,40 +26,112 @@
 
     <!-- Project Details -->
     <div
-      class="col-5 d-flex flex-column justify-content-start align-items-start gap-3 mt-4"
+      class="col-4 d-flex flex-column justify-content-start align-items-start gap-3 mt-4"
     >
-      <h1 class="text-primary">{{ singleProjectData.title }}</h1>
+      <h1 class="text-primary">{{ singleProjectData.data.title }}</h1>
+      <h5>
+        <span class="badge bg-danger">
+          {{ singleProjectData.data.category.name }}</span
+        >
+      </h5>
+      <div
+        class="d-flex gap-2"
+        *ngFor="let tag of singleProjectData.data.tags; index as i"
+      >
+        <div
+          style="
+            background-color: rgb(0, 0, 0);
+            border-radius: 15px;
+            width: 10vmax;
+            height: 2.5vmax;
+            text-align: center;
+            color: white;
+          "
+        >
+          <p>{{ tag }}</p>
+        </div>
+      </div>
       <h6>
         Project ID :
-        <span class="text-warning">{{ singleProjectData.id }}</span>
+        <span class="text-warning">{{ singleProjectData.data.id }}</span>
       </h6>
       <h6>
         Project Details :
-        <span class="text-warning">{{ singleProjectData.details }}</span>
+        <span class="text-warning">{{ singleProjectData.data.details }}</span>
       </h6>
       <h6>
         Start time :
-        <span class="text-warning">{{ singleProjectData.start_time }}</span>
+        <span class="text-warning">{{
+          singleProjectData.data.start_time
+        }}</span>
       </h6>
       <h6>
         End time :
-        <span class="text-warning">{{ singleProjectData.end_time }}</span>
+        <span class="text-warning">{{ singleProjectData.data.end_time }}</span>
       </h6>
       <h6>
-        No. Of Participants :
-        <span class="text-warning">{{ singleProjectData.user }}</span>
+        Created By :
+        <span class="text-warning"
+          >{{ singleProjectData.data.user.first_name }}
+          {{ singleProjectData.data.user.last_name }}</span
+        >
       </h6>
-      <h6 style="font-weight: 800;">
-        Total Target :
-        <span class="text-success">{{ singleProjectData.total_target }}</span>
-      </h6>
-      <h5>
-        <span class="badge bg-danger"> {{categoryData.name}}</span>
-      </h5>
     </div>
-    <!-- Button -->
-    <div class="col-2" style="padding-bottom: 40vh">
-      <button class="btn btn-success" style="width: 8vmax">some action</button>
+    <!-- Donation -->
+    <div class="col-3 d-flex flex-column gap-3 align-items-center">
+      <mat-card style="width: 15vmax">
+        <h6 style="font-weight: 800" class="text-center">
+          Total Target :
+          <h3 class="text-success">
+            {{ singleProjectData.data.total_target }} EGP
+          </h3>
+        </h6>
+      </mat-card>
+      <mat-card style="width: 15vmax">
+        <h6 style="font-weight: 800" class="text-center">
+          Current Donations:
+          <h3 class="text-success">{{ currentDonations }} EGP</h3>
+        </h6>
+      </mat-card>
+      <button class="btn btn-success" style="width: 8vmax" (click)="donate()">
+        Donate
+      </button>
+    </div>
+  </div>
+  <mat-divider></mat-divider>
+</div>
+
+
+
+<!--  -->
+<h1 class="container">Comments</h1>
+<mat-divider></mat-divider>
+<div class="container">
+  <!-- Leave Comments -->
+  <form class="mt-4">
+    <h3><label for=""></label>Leave a Comment:</h3>
+    <textarea id="comment" style="width: 100%" rows="5"></textarea>
+    <br />
+    <input type="submit" value="Submit" (click)="sendComment()" class="btn btn-success" />
+  </form>
+  <!--  -->
+  <div class="container d-flex flex-column">
+    <div
+      class="d-flex flex-column justify-conent-center align-items-center"
+      *ngFor="let comment of singleProjectData.data.comments; index as i"
+    >
+      <mat-card class="mt-4" style="width: 80%">
+        <mat-card-content
+          >
+          <img src="http://localhost:8000{{ comment.user.profile_picture }}" style="width: 3vmax;">
+          <p class="container fs-5 text-success-emphasis">
+            {{ comment.user.first_name }} {{ comment.user.last_name }}:
+          </p>
+          <p class="container text-success-emphasis">
+            {{ comment.comment }}
+          </p>
+        </mat-card-content>
+      </mat-card>
     </div>
   </div>
 </div>

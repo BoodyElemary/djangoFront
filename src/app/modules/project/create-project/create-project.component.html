@@ -1,31 +1,211 @@
-<p>create-project works!</p>
-<p>create-project works!</p>
-<p>create-project works!</p>
-<p>create-project works!</p>
-<p>create-project works!</p>
-<p>create-project works!</p>
-<p>create-project works!</p>
-<p>create-project works!</p>
-<p>create-project works!</p>
-<p>create-project works!</p>
-<p>create-project works!</p>
-<p>create-project works!</p>
-<p>create-project works!</p>
-<p>create-project works!</p>
-<p>create-project works!</p>
-<p>create-project works!</p>
-<p>create-project works!</p>
-<p>create-project works!</p>
-<p>create-project works!</p>
-<p>create-project works!</p>
-<p>create-project works!</p>
-<p>create-project works!</p>
-<p>create-project works!</p>
-<p>create-project works!</p>
-<p>create-project works!</p>
-<p>create-project works!</p>
-<p>create-project works!</p>
-<p>create-project works!</p>
-<p>create-project works!</p>
-<p>create-project works!</p>
-<p>create-project works!</p>
+<div class="container d-flex align-items-start justify-content-around mt-4">
+  <h1
+    style="
+      font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
+        'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+      margin-top: 0.7vmax;
+    "
+    class="col-4"
+  >
+    Create a Project:
+  </h1>
+  <form
+    class="col-7 row align-items-center justify-content-center mb-2 needs-validation"
+    [formGroup]="creationForm"
+    (ngSubmit)="onSubmit()"
+    novalidate
+    enctype="multipart/form-data"
+  >
+    <div class="alert alert-success mt-3" *ngIf="successMessage">
+      {{ message }}
+    </div>
+
+    <div class="alert alert-danger mt-3" *ngIf="errorMessage">
+      {{ message }}
+    </div>
+
+    <!-- Title -->
+    <div class="mb-2">
+      <label class="form-label" for="title">Project Title: </label>
+      <input
+        class="form-control"
+        id="title"
+        type="text"
+        formControlName="title"
+        [ngClass]="{
+          'is-invalid': submitted && creationForm.get('title')?.invalid
+        }"
+      />
+      <div
+        *ngIf="submitted && creationForm.get('title')?.invalid"
+        class="invalid-feedback"
+      >
+        <div *ngIf="creationForm.get('title')?.hasError('required')">
+          Project title is required
+        </div>
+      </div>
+    </div>
+    <!--  -->
+
+    <!-- Details -->
+    <div class="mb-2">
+      <label class="form-label" for="details">Project Details: </label>
+      <input
+        class="form-control"
+        id="details"
+        type="text"
+        formControlName="details"
+        [ngClass]="{
+          'is-invalid': submitted && creationForm.get('details')?.invalid
+        }"
+      />
+      <div
+        *ngIf="submitted && creationForm.get('details')?.invalid"
+        class="invalid-feedback"
+      >
+        <div *ngIf="creationForm.get('details')?.hasError('required')">
+          Project details are required
+        </div>
+      </div>
+    </div>
+    <!--  -->
+
+    <!-- Category -->
+    <div class="mb-2">
+      <label class="form-label" for="category">Add to a Category: </label>
+      <input
+        class="form-control"
+        id="category"
+        type="number"
+        formControlName="category"
+        [ngClass]="{
+          'is-invalid': submitted && creationForm.get('category')?.invalid
+        }"
+      />
+      <div
+        *ngIf="submitted && creationForm.get('category')?.invalid"
+        class="invalid-feedback"
+      >
+        <div *ngIf="creationForm.get('category')?.hasError('required')">
+          category is required
+        </div>
+      </div>
+    </div>
+    <!--  -->
+
+    <!-- Target -->
+    <div class="mb-2">
+      <label class="form-label" for="total_target">Project Target: </label>
+      <input
+        class="form-control"
+        id="total_target"
+        type="number"
+        formControlName="total_target"
+        [ngClass]="{
+          'is-invalid': submitted && creationForm.get('total_target')?.invalid
+        }"
+      />
+      <div
+        *ngIf="submitted && creationForm.get('total_target')?.invalid"
+        class="invalid-feedback"
+      >
+        <div *ngIf="creationForm.get('total_target')?.hasError('required')">
+          Total target is required
+        </div>
+      </div>
+    </div>
+    <!--  -->
+
+    <!-- End Time -->
+    <div class="mb-2">
+      <label class="form-label" for="start_time">Project Start Date: </label>
+      <input
+        class="form-control"
+        id="start_time"
+        type="date"
+        formControlName="start_time"
+        [ngClass]="{
+          'is-invalid': submitted && creationForm.get('start_time')?.invalid
+        }"
+      />
+      <div
+        *ngIf="submitted && creationForm.get('start_time')?.invalid"
+        class="invalid-feedback"
+      >
+        <div *ngIf="creationForm.get('start_time')?.hasError('required')">
+          End date is required
+        </div>
+      </div>
+    </div>
+    <!--  -->
+
+    <!-- End Time -->
+    <div class="mb-2">
+      <label class="form-label" for="end_time">Project End Date: </label>
+      <input
+        class="form-control"
+        id="end_time"
+        type="date"
+        formControlName="end_time"
+        [ngClass]="{
+          'is-invalid': submitted && creationForm.get('end_time')?.invalid
+        }"
+      />
+      <div
+        *ngIf="submitted && creationForm.get('end_time')?.invalid"
+        class="invalid-feedback"
+      >
+        <div *ngIf="creationForm.get('end_time')?.hasError('required')">
+          End date is required
+        </div>
+      </div>
+    </div>
+    <!--  -->
+
+    <!-- Tags -->
+    <div class="mb-2">
+      <label class="form-label" for="tags">Add project Tags: </label>
+      <input
+        class="form-control"
+        id="tags"
+        type="text"
+        formControlName="tags"
+        [ngClass]="{
+          'is-invalid': submitted && creationForm.get('tags')?.invalid
+        }"
+      />
+      <div
+        *ngIf="submitted && creationForm.get('tags')?.invalid"
+        class="invalid-feedback"
+      >
+        <div *ngIf="creationForm.get('tags')?.hasError('required')">
+          Tags are required
+        </div>
+      </div>
+    </div>
+    <!--  -->
+
+    <!-- Pictures -->
+    <div class="mb-2">
+      <label class="form-label" for="pictures">Upload Pictures: </label>
+      <input
+        class="form-control"
+        id="pictures"
+        type="file"
+        (change)="onFileSelect($event)"
+        formControlName="pictures"
+        multiple
+        [ngClass]="{
+          'is-invalid': submitted && creationForm.get('pictures')?.invalid
+        }"
+      />
+      <!-- Error messages here -->
+      <div *ngIf="creationForm.get('pictures')?.hasError('required')">
+        Project pictures are required
+      </div>
+    </div>
+    <!--  -->
+
+    <button type="submit" class="btn btn-dark">Create</button>
+  </form>
+</div>
