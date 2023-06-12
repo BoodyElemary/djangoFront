@@ -6,12 +6,13 @@ import { SignInComponent } from 'src/app/components/sign-in/sign-in.component';
 import { RegisterComponent } from 'src/app/components/register/register.component';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { HttpClientModule } from '@angular/common/http';
+import { LoginGuard } from 'src/app/guards/login-guard.guard';
 
 const routes: Routes = [
   {
     path: '',
     children: [
-      { path: '', component: HomeComponent },
+      { path: '', component: HomeComponent, canActivate: [LoginGuard] },
       { path: 'home', component: HomeComponent },
       { path: 'login', component: SignInComponent },
       { path: 'signup', component: RegisterComponent },

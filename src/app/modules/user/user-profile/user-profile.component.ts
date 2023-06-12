@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { BackDjangoService } from 'src/app/services/Back-Django.service';
 import { AuthService } from 'src/app/services/auth.service';
 
@@ -14,8 +15,12 @@ export class UserProfileComponent {
   firstName: string = '';
   lastName: string = '';
   profilePicUrl: string = '';
-
-  constructor(private http: BackDjangoService) {}
+  successDeleteMessage: string = '';
+  errorDeleteMessage: string = '';
+  constructor(
+    private http: BackDjangoService,
+    private modalService: NgbModal
+  ) {}
   ngOnInit(): void {
     this.profileData = this.http.getUserProfile().subscribe({
       next: (res: any) => {
@@ -32,6 +37,33 @@ export class UserProfileComponent {
       next: (res: any) => {
         this.userProjectsData = res;
         console.log(res);
+      },
+    });
+  }
+  open(content: any, id: number) {
+    this.modalService
+      .open(content, { ariaLabelledBy: 'modal-basic-title' })
+      .result.then(() => {
+        console.log(id);
+        this.deleteProject(id);
+      });
+  }
+
+  deleteProject(id: number): void {
+    this.http.deleteProject(id).subscribe({
+      next: (res: any) => {
+        console.log(res);
+        this.userProjectsData = this.http.getUserProject().subscribe({
+          next: (res: any) => {
+            this.userProjectsData = res;
+            console.log(res);
+            this.successDeleteMessage = res.message;
+          },
+        });
+      },
+      error: (err: any) => {
+        console.log(err.error.message);
+        this.errorDeleteMessage = err.error.message;
       },
     });
   }

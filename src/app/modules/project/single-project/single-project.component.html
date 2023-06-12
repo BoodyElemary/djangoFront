@@ -34,22 +34,12 @@
           {{ singleProjectData.data.category.name }}</span
         >
       </h5>
-      <div
-        class="d-flex gap-2"
-        *ngFor="let tag of singleProjectData.data.tags; index as i"
-      >
-        <div
-          style="
-            background-color: rgb(0, 0, 0);
-            border-radius: 15px;
-            width: 10vmax;
-            height: 2.5vmax;
-            text-align: center;
-            color: white;
-          "
+      <div class="d-flex gap-3 flex-wrap">
+        <ng-container
+          *ngFor="let tag of singleProjectData.data.tags; index as i"
         >
-          <p>{{ tag }}</p>
-        </div>
+          <span class="badge rounded-pill text-bg-dark">{{ tag.name }}</span>
+        </ng-container>
       </div>
       <h6>
         Project ID :
@@ -101,8 +91,6 @@
   <mat-divider></mat-divider>
 </div>
 
-
-
 <!--  -->
 <h1 class="container">Comments</h1>
 <mat-divider></mat-divider>
@@ -112,7 +100,12 @@
     <h3><label for=""></label>Leave a Comment:</h3>
     <textarea id="comment" style="width: 100%" rows="5"></textarea>
     <br />
-    <input type="submit" value="Submit" (click)="sendComment()" class="btn btn-success" />
+    <input
+      type="submit"
+      value="Submit"
+      (click)="sendComment()"
+      class="btn btn-success"
+    />
   </form>
   <!--  -->
   <div class="container d-flex flex-column">
@@ -121,9 +114,11 @@
       *ngFor="let comment of singleProjectData.data.comments; index as i"
     >
       <mat-card class="mt-4" style="width: 80%">
-        <mat-card-content
-          >
-          <img src="http://localhost:8000{{ comment.user.profile_picture }}" style="width: 3vmax;">
+        <mat-card-content>
+          <img
+            src="http://localhost:8000{{ comment.user.profile_picture }}"
+            style="width: 3vmax"
+          />
           <p class="container fs-5 text-success-emphasis">
             {{ comment.user.first_name }} {{ comment.user.last_name }}:
           </p>

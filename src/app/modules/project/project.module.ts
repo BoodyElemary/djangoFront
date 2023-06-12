@@ -9,16 +9,21 @@ import { MatCardModule } from '@angular/material/card';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { LoginGuard } from 'src/app/guards/login-guard.guard';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
-
-
+import { MatChipsModule } from '@angular/material/chips';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
 
 const routes: Routes = [
   {
     path: 'projects',
     children: [
       { path: '', component: AllProjectsComponent, canActivate: [LoginGuard] },
-      { path: 'all', component: AllProjectsComponent , canActivate: [LoginGuard] },
+      {
+        path: 'all',
+        component: AllProjectsComponent,
+        canActivate: [LoginGuard],
+      },
       { path: 'create', component: CreateProjectComponent },
       { path: ':id', component: SingleProjectComponent },
     ],
@@ -39,6 +44,10 @@ const routes: Routes = [
     CarouselModule,
     FormsModule,
     ReactiveFormsModule,
+    MatChipsModule,
+    MatFormFieldModule,
+    MatIconModule,
+    MatInputModule,
   ],
 })
 export class ProjectModule {}

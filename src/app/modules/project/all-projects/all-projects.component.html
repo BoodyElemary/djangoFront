@@ -1,11 +1,21 @@
 <!-- Page Title -->
 <mat-card class="mt-4">
-  <h1 style="margin-left: 10%">All Projects</h1>
+  <div class="d-flex justify-content-between align-items-baseline container">
+    <div>
+      <h1>All Projects</h1>
+    </div>
+    <mat-form-field class="example-full-width" appearance="outline">
+      <mat-label>Search for project</mat-label>
+      <input matInput [(ngModel)]="searchQuery" />
+    </mat-form-field>
+  </div>
 </mat-card>
+
+<!-- search Input -->
 
 <!-- All Projects -->
 
-<div *ngFor="let project of allProjectsData.data; index as i">
+<div *ngFor="let project of filteredProjects; index as i">
   <article class="container card" style="margin-top: 70px">
     <div class="row no-gutters">
       <!-- Image -->
@@ -28,23 +38,16 @@
             Project Total Target: {{ project.total_target }}
           </p>
           <p class="card-text">
-            Created By : {{ project.user.first_name }} {{ project.user.last_name }}
+            Created By : {{ project.user.first_name }}
+            {{ project.user.last_name }}
           </p>
         </figcaption>
         <!-- Tags -->
-        <div class="d-flex gap-2" *ngFor="let tag of project.tags; index as i">
-          <div
-            style="
-              background-color: rgb(0, 0, 0);
-              border-radius: 15px;
-              width: 10vmax;
-              height: 2.5vmax;
-              text-align: center;
-              color: white;
-            "
-          >
-            <p>{{ tag }}</p>
-          </div>
+        <div class="d-flex gap-3 flex-wrap">
+          <ng-container *ngFor="let tag of project.tags; index as i">
+            <span class="badge rounded-pill text-bg-dark">{{ tag.name }}</span>
+          </ng-container>
+          <br />
         </div>
         <!-- End of info -->
       </div>

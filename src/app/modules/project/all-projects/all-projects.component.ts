@@ -1,29 +1,36 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
 import { BackDjangoService } from 'src/app/services/Back-Django.service';
 
 @Component({
   selector: 'app-all-projects',
   templateUrl: './all-projects.component.html',
-  styleUrls: ['./all-projects.component.css']
+  styleUrls: ['./all-projects.component.css'],
 })
 export class AllProjectsComponent {
+  allProjectsData: any;
+  searchQuery: string = '';
 
+  constructor(private allProjectsService: BackDjangoService) {}
 
-
-  allProjectsData : any;
-
-  constructor(private allProjectsService:BackDjangoService,private router:Router , private activatedRoute:ActivatedRoute){
+  ngOnInit(): void {
+    this.allProjectsService.getAllProjects().subscribe({
+      next: (res: any) => {
+        this.allProjectsData = res;
+        console.log(this.allProjectsData);
+      },
+    });
   }
 
-  ngOnInit():void{
-       this.allProjectsData = this.allProjectsService.getAllProjects().subscribe({
-      next:(res)=>{this.allProjectsData = res;
-        console.log(this.allProjectsData) },  
-       })
+  get filteredProjects(): any[] {
+    if (!this.searchQuery) {
+      return this.allProjectsData?.data || [];
+    }
 
-      // this.router.navigate(['**']);
-
-} 
-
+    const searchLower = this.searchQuery.toLowerCase();
+    return (
+      this.allProjectsData?.data?.filter((project: any) =>
+        project.title.toLowerCase().includes(searchLower)
+      ) || []
+    );
+  }
 }

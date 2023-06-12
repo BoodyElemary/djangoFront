@@ -62,22 +62,35 @@ export class BackDjangoService {
   getOneProjectDonation(id: number) {
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders().set('Authorization', `${token}`);
-    return this.httpServ.get(`${this.projectAPI}/${id}/Donations/`, { headers });
+    return this.httpServ.get(`${this.projectAPI}/${id}/Donations/`, {
+      headers,
+    });
   }
-  addOneProjectDonation(money:any, id: number) {
+  addOneProjectDonation(money: any, id: number) {
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders().set('Authorization', `${token}`);
-    return this.httpServ.post(`${this.projectAPI}/${id}/Donations/`,money, { headers });
+    return this.httpServ.post(`${this.projectAPI}/${id}/Donations/`, money, {
+      headers,
+    });
   }
   getOneProjectComment(id: number) {
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders().set('Authorization', `${token}`);
     return this.httpServ.get(`${this.projectAPI}/${id}/comments/`, { headers });
   }
-  addOneProjectComment(comment: any,id: number) {
+  addOneProjectComment(comment: any, id: number) {
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders().set('Authorization', `${token}`);
-    return this.httpServ.post(`${this.projectAPI}/${id}/comments/`, comment,{ headers });
+    return this.httpServ.post(`${this.projectAPI}/${id}/comments/`, comment, {
+      headers,
+    });
+  }
+  deleteProject(id: number) {
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders().set('Authorization', `${token}`);
+    return this.httpServ.delete(`${this.projectAPI}/${id}/`, {
+      headers,
+    });
   }
 
   //--------------------------------------------------------------
@@ -86,11 +99,13 @@ export class BackDjangoService {
   getAllCategories() {
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders().set('Authorization', `${token}`);
-    return this.httpServ.get(`${this.categoryAPI}/`,{headers});
+    return this.httpServ.get(`${this.categoryAPI}/`, { headers });
   }
   getOneCategory(id: number) {
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders().set('Authorization', `${token}`);
-    return this.httpServ.get(`${this.categoryAPI}/${id}/projects/ `,{headers});
+    return this.httpServ.get(`${this.categoryAPI}/${id}/projects/ `, {
+      headers,
+    });
   }
 }
