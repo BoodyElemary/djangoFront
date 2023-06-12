@@ -4,14 +4,35 @@
     <div>
       <h1>All Projects</h1>
     </div>
+    <!-- search Input -->
     <mat-form-field class="example-full-width" appearance="outline">
       <mat-label>Search for project</mat-label>
       <input matInput [(ngModel)]="searchQuery" />
     </mat-form-field>
+    <form class="example-form">
+      <mat-form-field class="example-full-width" appearance="outline">
+        <mat-label>Tags</mat-label>
+        <input
+          type="text"
+          placeholder="Pick one"
+          aria-label="Number"
+          matInput
+          [formControl]="myControl"
+          [matAutocomplete]="auto"
+          [(ngModel)]="tagsSearchQuery"
+        />
+        <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+          <mat-option
+            *ngFor="let option of filteredOptions | async"
+            [value]="option"
+          >
+            {{ option }}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+    </form>
   </div>
 </mat-card>
-
-<!-- search Input -->
 
 <!-- All Projects -->
 

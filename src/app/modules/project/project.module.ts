@@ -13,6 +13,7 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 const routes: Routes = [
   {
@@ -48,6 +49,7 @@ const routes: Routes = [
     MatFormFieldModule,
     MatIconModule,
     MatInputModule,
+    MatAutocompleteModule,
   ],
 })
 export class ProjectModule {}

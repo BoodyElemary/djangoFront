@@ -108,4 +108,12 @@ export class BackDjangoService {
       headers,
     });
   }
+
+  //----------- for tags
+  tagsApi: string = 'http://localhost:8000/projects/tags';
+  getAllTags() {
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders().set('Authorization', `${token}`);
+    return this.httpServ.get(`${this.tagsApi}/`, { headers });
+  }
 }
