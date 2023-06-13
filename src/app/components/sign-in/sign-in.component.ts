@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 export class SignInComponent {
   loginForm: FormGroup;
   submitted = false;
+  errorMessage: string = '';
 
   constructor(
     private fb: FormBuilder,
@@ -52,7 +53,8 @@ export class SignInComponent {
         }
       },
       (error) => {
-        console.error('Login error:', error);
+        this.errorMessage = error.error.message;
+        console.error('Login error:', error.error.message);
       }
     );
   }

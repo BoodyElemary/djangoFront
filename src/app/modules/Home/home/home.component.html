@@ -2,45 +2,68 @@
   <div class="carousel-text z-2 d-flex flex-column gap-2 gap-md-4"></div>
   <div class="bg-white slider-container">
     <owl-carousel-o [options]="customOptions">
-      <ng-template carouselSlide>
+      <ng-template carouselSlide *ngFor="let project of topProjectsData.data">
         <div class="carousel-slide">
-          <img
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSBzaxP4bdIuAWsrVctreho7ImqaQkiHjOR9rX96WQn9jzvahnXexwSytCaE1AFV0IB2lw&usqp=CAU"
-            alt="slider first Image "
-            class="img-fluid"
-          />
+          <a [routerLink]="'/projects/' + project.id">
+            <img
+              [src]="project.pictures[0]"
+              alt="slider first Image "
+              class="img-fluid"
+            />
+          </a>
           <div class="carousel-caption">
-            <h3>Slide 1 Title</h3>
-            <p>Slide 1 Description</p>
-          </div>
-        </div>
-      </ng-template>
-      <ng-template carouselSlide>
-        <div class="carousel-slide">
-          <img
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSBzaxP4bdIuAWsrVctreho7ImqaQkiHjOR9rX96WQn9jzvahnXexwSytCaE1AFV0IB2lw&usqp=CAU"
-            alt="slider second Image "
-            class="img-fluid"
-          />
-          <div class="carousel-caption">
-            <h3>Slide 2 Title</h3>
-            <p>Slide 2 Description</p>
-          </div>
-        </div>
-      </ng-template>
-      <ng-template carouselSlide>
-        <div class="carousel-slide">
-          <img
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSBzaxP4bdIuAWsrVctreho7ImqaQkiHjOR9rX96WQn9jzvahnXexwSytCaE1AFV0IB2lw&usqp=CAU"
-            alt="slider third Image"
-            class="img-fluid"
-          />
-          <div class="carousel-caption">
-            <h3>Slide 3 Title</h3>
-            <p>Slide 3 Description</p>
+            <h3>{{ project.title }}</h3>
+            <p>{{ project.details }}</p>
           </div>
         </div>
       </ng-template>
     </owl-carousel-o>
   </div>
+</div>
+
+<h2>Latest</h2>
+
+<div>
+  <article
+    class="container card"
+    style="margin-top: 70px"
+    *ngFor="let project of topProjectsData.data"
+  >
+    <div class="row no-gutters">
+      <!-- Image -->
+      <figure class="card-image col-8 col-md-4">
+        <a href="/projects/{{ project.id }}">
+          <img
+            src="{{ project.pictures[0] }}"
+            class="card-img col-8 col-md-12"
+            alt="{{ project }}"
+          />
+        </a>
+      </figure>
+      <div class="col-8 col-12 col-md-8">
+        <!-- Details -->
+        <figcaption class="card-body">
+          <a href="/projects/{{ project.id }}" style="text-decoration: none">
+            <h2 class="card-title">{{ project.title }}</h2>
+          </a>
+          <p class="card-text">Project Details: {{ project.details }}</p>
+          <p class="card-text">
+            Project Total Target: {{ project.total_target }}
+          </p>
+          <p class="card-text">
+            Created By : {{ project.user.first_name }}
+            {{ project.user.last_name }}
+          </p>
+        </figcaption>
+        <!-- Tags -->
+        <div class="d-flex gap-3 flex-wrap">
+          <ng-container *ngFor="let tag of project.tags; index as i">
+            <span class="badge rounded-pill text-bg-dark">{{ tag.name }}</span>
+          </ng-container>
+          <br />
+        </div>
+        <!-- End of info -->
+      </div>
+    </div>
+  </article>
 </div>

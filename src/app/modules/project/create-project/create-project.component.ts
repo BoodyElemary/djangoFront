@@ -154,9 +154,10 @@ export class CreateProjectComponent {
     console.log(formInfo.get('pictures'));
 
     this.bacEndService.addOneProject(formInfo).subscribe({
-      next: (res) => {
+      next: (res: any) => {
         this.newProjectData = res;
-        console.log(this.newProjectData);
+        console.log(this.newProjectData.message);
+        this.successMessage = this.newProjectData.message;
       },
     });
   }

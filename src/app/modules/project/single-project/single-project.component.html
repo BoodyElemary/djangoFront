@@ -1,3 +1,57 @@
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title col-11" id="modal-basic-title">Report a project</h4>
+    <button
+      type="button"
+      class="btn-close float-end"
+      aria-label="Close"
+      (click)="modal.dismiss('Cross click')"
+    ></button>
+  </div>
+  <div class="modal-body">
+    <div class="mb-3 container">
+      <label for="">the reason for report:</label>
+      <input type="text" class="form-control" [(ngModel)]="reason" />
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button
+      type="button"
+      class="btn btn-outline-dark"
+      (click)="modal.close('Save click')"
+    >
+      report
+    </button>
+  </div>
+</ng-template>
+
+<ng-template #comments let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title col-11" id="comment-report">Report a comment</h4>
+    <button
+      type="button"
+      class="btn-close float-end"
+      aria-label="Close"
+      (click)="modal.dismiss('Cross click')"
+    ></button>
+  </div>
+  <div class="modal-body">
+    <div class="mb-3 container">
+      <label for="">the reason for report:</label>
+      <input type="text" class="form-control" [(ngModel)]="reason" />
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button
+      type="button"
+      class="btn btn-outline-dark"
+      (click)="modal.close('Save click')"
+    >
+      report
+    </button>
+  </div>
+</ng-template>
+
 <!-- Whole page -->
 <div class="container" style="height: 90vh">
   <!-- Project Section -->
@@ -69,6 +123,7 @@
     </div>
     <!-- Donation -->
     <div class="col-3 d-flex flex-column gap-3 align-items-center">
+      <h1>{{ singleProjectData.data.averageRate }}/ 5</h1>
       <mat-card style="width: 15vmax">
         <h6 style="font-weight: 800" class="text-center">
           Total Target :
@@ -86,10 +141,23 @@
       <button class="btn btn-success" style="width: 8vmax" (click)="donate()">
         Donate
       </button>
+      <button
+        class="btn btn-danger"
+        style="width: 8vmax"
+        (click)="open(content)"
+      >
+        Report
+      </button>
     </div>
   </div>
   <mat-divider></mat-divider>
 </div>
+<ngb-rating
+  [(rate)]="currentRate"
+  [max]="5"
+  (rateChange)="rateProject()"
+  class="fs-1"
+></ngb-rating>
 
 <!--  -->
 <h1 class="container">Comments</h1>
@@ -126,6 +194,12 @@
             {{ comment.comment }}
           </p>
         </mat-card-content>
+        <button
+          class="btn text-danger col-1 align-self-end"
+          (click)="show(comments, comment.id, comment.project)"
+        >
+          report
+        </button>
       </mat-card>
     </div>
   </div>

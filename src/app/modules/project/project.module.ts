@@ -14,6 +14,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { NgbRatingModule } from '@ng-bootstrap/ng-bootstrap';
 
 const routes: Routes = [
   {
@@ -50,6 +51,7 @@ const routes: Routes = [
     MatIconModule,
     MatInputModule,
     MatAutocompleteModule,
+    NgbRatingModule,
   ],
 })
 export class ProjectModule {}

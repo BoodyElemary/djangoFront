@@ -77,32 +77,24 @@
       </mat-list>
       <mat-divider class="col-md-9"></mat-divider>
       <!-- table of donations -->
+      <h3>projects donations</h3>
       <table class="table mt-5">
         <thead>
           <tr>
             <th scope="col">#</th>
-            <th scope="col">First</th>
-            <th scope="col">Last</th>
-            <th scope="col">Handle</th>
+            <th scope="col">Title</th>
+            <th scope="col">Start date</th>
+            <th scope="col">End date</th>
+            <th scope="col">total donations</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-          </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td colspan="2">Larry the Bird</td>
-            <td>@twitter</td>
+          <tr *ngFor="let item of userProjectsData.data; index as i">
+            <th scope="row">{{ i + 1 }}</th>
+            <td>{{ item.title }}</td>
+            <td>{{ item.start_time }}</td>
+            <td>{{ item.end_time }}</td>
+            <td>{{ item.donation }}</td>
           </tr>
         </tbody>
       </table>

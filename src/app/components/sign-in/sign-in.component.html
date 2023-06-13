@@ -6,6 +6,9 @@
     novalidate
   >
     <img src="assets/pngwing.com.png" alt="" class="w-lg-25 w-25" />
+    <div class="alert alert-danger" role="alert" *ngIf="errorMessage">
+      {{ errorMessage }}
+    </div>
     <div class="mb-3">
       <label class="form-label" for="email">email: </label>
       <input
@@ -52,7 +55,7 @@
     </div>
     <button type="submit" class="btn btn-dark">Sign In</button>
     <div class="no account">
-      <p>don't have account? <span>Register</span></p>
+      <p>don't have account? <a routerLink="/signup">Register</a></p>
     </div>
   </form>
 </div>

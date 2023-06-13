@@ -92,6 +92,32 @@ export class BackDjangoService {
       headers,
     });
   }
+  reportProject(id: number, reason: any) {
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders().set('Authorization', `${token}`);
+    return this.httpServ.post(`${this.projectAPI}/${id}/reports/`, reason, {
+      headers,
+    });
+  }
+  reportProjectComment(id: number, commentId: number, reason: any) {
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders().set('Authorization', `${token}`);
+    return this.httpServ.post(
+      `${this.projectAPI}/${id}/comments/${commentId}/reports/`,
+      reason,
+      {
+        headers,
+      }
+    );
+  }
+
+  addRate(id: number, rate: any) {
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders().set('Authorization', `${token}`);
+    return this.httpServ.post(`${this.projectAPI}/${id}/rates/`, rate, {
+      headers,
+    });
+  }
 
   //--------------------------------------------------------------
   // ------------- For Categories
@@ -115,5 +141,27 @@ export class BackDjangoService {
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders().set('Authorization', `${token}`);
     return this.httpServ.get(`${this.tagsApi}/`, { headers });
+  }
+
+  //top five
+  topRatedApi: string = 'http://localhost:8000/projects/HighestFiveRated';
+
+  getTopRatedProjects() {
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders().set('Authorization', `${token}`);
+    return this.httpServ.get(`${this.topRatedApi}/`, { headers });
+  }
+  latestProhectApi: string = 'http://localhost:8000/projects/lastFiveProjects';
+  getLatestProjects() {
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders().set('Authorization', `${token}`);
+    return this.httpServ.get(`${this.latestProhectApi}/`, { headers });
+  }
+  editorChiceApi: string =
+    'http://localhost:8000/projects/lastFiveProjectSelectedByAdmin';
+  getEditorChoiseProjects() {
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders().set('Authorization', `${token}`);
+    return this.httpServ.get(`${this.editorChiceApi}/`, { headers });
   }
 }
