@@ -18,12 +18,12 @@ export class AllCategoriesComponent {
   ngOnInit():void{
        this.allCategoriesData = this.allCategoriesService.getAllCategories().subscribe({
       next:(res)=>{this.allCategoriesData = res;
-        console.log(this.allCategoriesData) },  
+        console.log(this.allCategoriesData) },
        })
 
       // this.router.navigate(['**']);
 
-} 
+}
 
   // editProfile(){
   //   this.router.navigate(['jobDetails/4'])

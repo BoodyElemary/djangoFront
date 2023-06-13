@@ -73,15 +73,20 @@
     <!-- Category -->
     <div class="mb-2">
       <label class="form-label" for="category">Add to a Category: </label>
-      <input
-        class="form-control"
-        id="category"
-        type="number"
-        formControlName="category"
-        [ngClass]="{
-          'is-invalid': submitted && creationForm.get('category')?.invalid
-        }"
-      />
+      <select name="category"
+       id="category"
+       formControlName="category"
+       [ngClass]="{
+         'is-invalid': submitted && creationForm.get('category')?.invalid}"
+
+      >
+        <option value="0">Select one category</option>
+        <option value="{{category.id}}" *ngFor="let category of allCategoriesData; index as i">
+            {{category.name}}
+        </option>
+
+      </select>
+
       <div
         *ngIf="submitted && creationForm.get('category')?.invalid"
         class="invalid-feedback"

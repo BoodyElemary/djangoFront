@@ -27,7 +27,8 @@ export class CreateProjectComponent {
 
   constructor(
     private fb: FormBuilder,
-    private bacEndService: BackDjangoService
+    private bacEndService: BackDjangoService,
+    private allCategoriesService:BackDjangoService
   ) {
     this.creationForm = this.fb.group({
       title: ['', Validators.required],
@@ -161,4 +162,15 @@ export class CreateProjectComponent {
       },
     });
   }
+
+  allCategoriesData : any;
+
+  ngOnInit():void{
+       this.allCategoriesData = this.allCategoriesService.getAllCategories().subscribe({
+      next:(res)=>{this.allCategoriesData = res;
+        console.log(this.allCategoriesData) },
+       })
+      }
+
+
 }
